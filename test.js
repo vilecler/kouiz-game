@@ -6,6 +6,10 @@ const ws1 = new WebSocket(sockedEndpoint, {
 });
 
 
+ws1.on('test', (message) => {
+  console.log('Message received from server: ' + message);
+});
+
 ws1.on('open', () => {
    console.log('WS1 connected');
    let count = 0;

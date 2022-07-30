@@ -50,7 +50,7 @@ const handler = async (event: APIGatewayProxyWebsocketEventV2): Promise<Response
     connection.send({
       action: 'test',
       data: 'hello'
-    })
+    }, apigwManagementApi);
     return Responses.generateSuccess({message: "Message received."});
 };
 

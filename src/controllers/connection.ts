@@ -1,5 +1,6 @@
-export class Connection{
+import { ApiGatewayManagementApi } from 'aws-sdk'
 
+export class Connection{
 
   constructor(
     public connectionId: string
