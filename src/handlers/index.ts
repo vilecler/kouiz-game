@@ -47,7 +47,7 @@ const handler = async (event: APIGatewayProxyWebsocketEventV2): Promise<Response
     }
 
     console.log("$default")
-    connection.send({
+    await connection.send({
       action: 'test',
       data: 'hello'
     }, apigwManagementApi);
