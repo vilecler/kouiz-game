@@ -17,11 +17,6 @@ export class Connection{
 
   async send(data: any, api: ApiGatewayManagementApi){
     // Send a WebSocket message to client.
-    console.log("Sending data to client.")
-    console.log({
-      ConnectionId: this.connectionId,
-      Data: JSON.stringify(data)
-    });
     return api.postToConnection({
       ConnectionId: this.connectionId,
       Data: JSON.stringify(data)

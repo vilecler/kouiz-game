@@ -1,4 +1,5 @@
 export class AppSettings {
+  static readonly ENDPOINT_URL: string = process.env.ENDPOINT_URL!;
   static readonly MONGODB_URI: string = process.env.MONGODB_URI!;
   static readonly MONGODB_USER: string = process.env.MONGODB_USER!;
   static readonly MONGODB_PASSWORD: string = process.env.MONGODB_PASSWORD!;

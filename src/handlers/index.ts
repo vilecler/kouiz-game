@@ -2,6 +2,7 @@ import { APIGatewayProxyWebsocketEventV2 } from 'aws-lambda';
 import { ApiGatewayManagementApi } from 'aws-sdk'
 
 import { connectToDatabase } from "../services/db";
+import { AppSettings } from '../config/constants';
 
 import { Connection } from "../controllers/connection";
 
@@ -9,9 +10,6 @@ import { Response } from "../models/response";
 import { Responses } from "../utils/responses";
 
 const handler = async (event: APIGatewayProxyWebsocketEventV2): Promise<Response> => {
-
-    console.log("Here is the handler");
-    console.log(event);
     //const database: Db = await connectToDatabase();
     if(!(event.requestContext && event.requestContext.connectionId)){
       throw new Error("Error bad request: missing connectionId parameter")
@@ -25,34 +23,29 @@ const handler = async (event: APIGatewayProxyWebsocketEventV2): Promise<Response
     const connectionId = event.requestContext.connectionId;
     const routeKey = event.requestContext.routeKey;
 
-    const endpoint = '2odo79i368.execute-api.eu-west-3.amazonaws.com' + '/' + event.requestContext.stage
+    const endpoint = AppSettings.ENDPOINT_URL.substring(6); //Remove "wss://"
     const apigwManagementApi = new ApiGatewayManagementApi({
       apiVersion: '2018-11-29',
       endpoint: endpoint
     });
-    console.log(endpoint);
 
     // Create a connection object
     const connection = new Connection(connectionId);
 
     if(routeKey == '$connect'){
-      console.log("$connect")
       await connection.subscribe();
       return Responses.generateSuccess({message: "Connection successful."});
     }
 
     if(routeKey == '$disconnect'){
-      console.log("$disconnect")
       await connection.unsubscribe();
       return Responses.generateSuccess({message: "Disconnection successful."});
     }
 
-    console.log("$default")
     await connection.send({
       action: 'test',
       data: 'hello'
     }, apigwManagementApi);
-    return Responses.generateSuccess({message: "Message received."});
 };
 
 export default handler;
