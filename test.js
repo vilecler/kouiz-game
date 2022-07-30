@@ -1,5 +1,5 @@
 const WebSocket = require('ws');
-const sockedEndpoint = 'ws://game.kouiz.it';
+const sockedEndpoint = 'wss://game.kouiz.it';
 
 const ws1 = new WebSocket(sockedEndpoint, {
  perMessageDeflate: false
