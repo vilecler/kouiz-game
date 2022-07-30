@@ -10,6 +10,9 @@ import { Response } from "../models/response";
 import { Responses } from "../utils/responses";
 
 const handler = async (event: APIGatewayProxyWebsocketEventV2): Promise<Response> => {
+
+    console.log("Here is the handler");
+    console.log(event);
     //const database: Db = await connectToDatabase();
     if(!(event.requestContext && event.requestContext.connectionId)){
       throw new Error("Error bad request: missing connectionId parameter")
@@ -25,15 +28,18 @@ const handler = async (event: APIGatewayProxyWebsocketEventV2): Promise<Response
     const connection = new Connection(connectionId);
 
     if(routeKey == '$connect'){
+      console.log("$connect")
       await connection.subscribe();
       return Responses.generateSuccess({message: "Connection successful."});
     }
 
     if(routeKey == '$disconnect'){
+      console.log("$disconnect")
       await connection.unsubscribe();
       return Responses.generateSuccess({message: "Disconnection successful."});
     }
 
+    console.log("$default")
     return Responses.generateSuccess({message: "Message received."});
 };
 

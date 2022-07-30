@@ -4,7 +4,8 @@
   "description": "Repository for Kouiz Game.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "compile": "tsc"
   },
   "repository": {
     "type": "git",
@@ -21,7 +22,8 @@
     "aws-sdk": "^2.1185.0",
     "dotenv": "^16.0.1",
     "mongodb": "^4.8.1",
-    "url-pattern": "^1.0.3"
+    "url-pattern": "^1.0.3",
+    "ws": "^8.8.1"
   },
   "devDependencies": {
     "@types/aws-lambda": "^8.10.101",
