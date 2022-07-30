@@ -25,11 +25,12 @@ const handler = async (event: APIGatewayProxyWebsocketEventV2): Promise<Response
     const connectionId = event.requestContext.connectionId;
     const routeKey = event.requestContext.routeKey;
 
-    const endpoint = event.requestContext.domainName + '/' + event.requestContext.stage
+    const endpoint = '2odo79i368.execute-api.eu-west-3.amazonaws.com' + '/' + event.requestContext.stage
     const apigwManagementApi = new ApiGatewayManagementApi({
       apiVersion: '2018-11-29',
       endpoint: endpoint
     });
+    console.log(endpoint);
 
     // Create a connection object
     const connection = new Connection(connectionId);
