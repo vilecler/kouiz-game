@@ -13,7 +13,7 @@ module.exports.handler = async (event) => {
   console.log('Event: ', event);
 
   const client = await clientPromise;
-  let responseMessage = 'Welcome to the Game section :) ' + client.db().databaseName;
+  let responseMessage = 'Welcome to the Game section :) This is just a test. ' + client.db().databaseName;
 
 
   return {
