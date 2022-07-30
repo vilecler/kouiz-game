@@ -33,6 +33,7 @@ const handler = async (event: APIGatewayProxyWebsocketEventV2): Promise<any> => 
     const connection = new Connection(connectionId);
 
     if(routeKey == '$connect'){
+      console.log(event);
       await connection.subscribe();
       return Responses.generateSuccess({message: "Connection successful."});
     }
