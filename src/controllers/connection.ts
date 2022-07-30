@@ -19,7 +19,7 @@ export class Connection{
     // Send a WebSocket message to client.
     return api.postToConnection({
       ConnectionId: this.connectionId,
-      Data: data
+      Data: JSON.stringify(data)
     }).promise();
   }
 
