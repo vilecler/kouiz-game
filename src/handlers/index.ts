@@ -9,7 +9,7 @@ import { Connection } from "../controllers/connection";
 import { Response } from "../models/response";
 import { Responses } from "../utils/responses";
 
-const handler = async (event: APIGatewayProxyWebsocketEventV2): Promise<Response> => {
+const handler = async (event: APIGatewayProxyWebsocketEventV2): Promise<any> => {
     //const database: Db = await connectToDatabase();
     if(!(event.requestContext && event.requestContext.connectionId)){
       throw new Error("Error bad request: missing connectionId parameter")
@@ -42,10 +42,13 @@ const handler = async (event: APIGatewayProxyWebsocketEventV2): Promise<Response
       return Responses.generateSuccess({message: "Disconnection successful."});
     }
 
-    await connection.send({
+
+    return await connection.send({
       action: 'test',
       data: 'hello'
     }, apigwManagementApi);
+
+    return Responses.generateSuccess({message: "No function found."});
 };
 
 export default handler;
