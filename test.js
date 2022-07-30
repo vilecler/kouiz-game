@@ -2,7 +2,10 @@ const WebSocket = require('ws');
 const sockedEndpoint = 'wss://game.kouiz.it';
 
 const ws1 = new WebSocket(sockedEndpoint, {
- perMessageDeflate: false
+  perMessageDeflate: false,
+  headers: {
+    gameSession: "ezaezaezaezaezaezaezaezaez45641s65d4z65d4sq5564843649674648964aezaezaezeza"
+  }
 });
 
 
